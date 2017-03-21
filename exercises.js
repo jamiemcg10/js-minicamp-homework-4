@@ -6,27 +6,52 @@ function multiplyArguments() {
 	//use the arguments keyword to multiply all of the arguments together and return the product
 	//if no arguments are passed in return 0
 	//if one argument is passed in just return it
+	if (arguments.length === 0){
+		return 0;
+    } else if (arguments.length === 1){
+		return arguments[0];
+    } else{
+        var mult = 1;
+        for (var i=0;i<arguments.length;i++){
+        mult = mult*arguments[i];
+      }
+        return mult;
+	}
 }
 
 function invokeCallback(cb) {
-	//invoke cb
+	cb();
 }
 
 function sumArray(numbers, cb) {
 	//sum up all of the integers in the numbers array
 	//pass the result to cb
 	//no return is necessary
+    var sumz = numbers.reduce(function(total,num){
+		total += num;
+		return total;
+    });
+    
+    cb(sumz);
 }
 
 function forEach(arr, cb) {
 	//iterate over arr and pass its values to cb one by one
 	//hint: you will be invoking cb multiple times (once for each value in the array)
+    arr.forEach(function(x){
+      cb(x);
+	});
 }
 
 function map(arr, cb) {
 	//create a new array
 	//iterate over each value in arr, pass it to cb, then place the value returned from cb into the new arr
 	//the new array should be the same length as the array argument
+    var newArr = arr.map(function(x){
+		return cb(x);
+	});
+	
+	return newArr;
 }
 
 function getUserConstructor() {
