@@ -61,11 +61,29 @@ function getUserConstructor() {
 	//the constructor should have a method 'sayHi' on its prototype that returns the string 'Hello, my name is {{name}}'
 	//{{name}} should be the name set on each instance
 	//return the constructor
+    function User (options){
+        this.username = options.username;
+        this.name = options.name;
+        this.email = options.email;
+        this.password = options.password;
+        this.sayHi = function(){
+          return 'Hello, my name is ' + options.name;
+        };
+
+	}
+    
+	return User;
 }
 
 function addPrototypeMethod(Constructor) {
 	//add a method to the constructor's prototype
 	//the method should be called 'sayHi' and should return the string 'Hello World!'
+
+    Constructor.prototype.sayHi = function(){
+        return 'Hello World!';		
+	};
+
+
 }
 
 function addReverseString() {
@@ -73,6 +91,15 @@ function addReverseString() {
 	//name this method reverse
 	//hint:
 	//you will need to use 'this' inside of reverse
+    String.prototype.reverse = function(){
+        var stringLength = this.length;
+		var newString = '';
+        for (var i=stringLength-1;i>=0;i--){
+            newString += this[i];			
+		}		
+        return newString;
+	};
+    
 }
 
 function nFactorial(n) {
@@ -80,6 +107,12 @@ function nFactorial(n) {
 	//solve this recursively
 	//example:
 	//the factorial of 3 is 6 (3 * 2 * 1)
+  if (n<1){
+    return 1;
+  }
+  else {
+    return (n * nFactorial(n-1));
+  }
 }
 
 function cacheFunction(cb) {
